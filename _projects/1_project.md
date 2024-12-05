@@ -10,4 +10,4 @@ related_publications: true
 
 You can access the coursework file below.
 
-pdf: example_pdf.pdf
+[Report on Vietnamese Refugees](assets/pdf/Zhengting_CV.pdf)
