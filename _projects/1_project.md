@@ -10,4 +10,4 @@ related_publications: true
 
 You can access the coursework file below.
 
-[Report on Vietnamese Refugees](assets/pdf/Zhengting_CV.pdf)
+[Report on Vietnamese Refugees](assets/pdf/20413044_INTS3017_Coursework2.pdf)
