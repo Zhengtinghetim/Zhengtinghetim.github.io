@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A collection of my pervious coursework.
+description: A collection of my previous coursework.
 nav: true
 nav_order: 3
-display_categories: [history, politics]
+display_categories: [history, criminology, politics]
 horizontal: false
 ---
 
