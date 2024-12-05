@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: 4th year undergrad. Taikang East Road 199, Ningbo, Zhejiang, China. Hezhengting2003@outlook.com
 
 profile:
   align: right
@@ -18,8 +18,10 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+I am a 4th-year undergrad from the [School of International Studies](https://www.nottingham.edu.cn/en/humanities-and-social-sciences/schools-and-department/international-studies/home.aspx), [University of Nottingham Ningbo China](https://www.nottingham.edu.cn/en/index.aspx). My research interests include organized crime, deepfake technology in organized crime, human and drug trafficking, substance dependence, corruption, Chinese criminology and queer criminology.
 
-Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My BA dissertation focused on methamphetamine (meth) trafficking in China. This project will be descriptive research based on open-access sentencing documents. I aim to present a dynamic of meth imports and implement network analysis and descriptive statistics to provide a comprehensive examination of meth trafficking, including the pattern of geographic routes and the demographic characteristics of captured trafficking offenders. This project is supervised by [Dr. Tracey Fallon](https://research.nottingham.edu.cn/en/persons/tracey-fallon)
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+My CV is available here: [Zhengting's CV](assets/pdf/Zhengting_CV.pdf)
+
+[Email](hezhengting2003@outlook.com) / [Linkedin](https://www.linkedin.com/in/zhengting-he-venividivici/)
