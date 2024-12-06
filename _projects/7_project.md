@@ -10,4 +10,4 @@ related_publications: true
 
 You can access the coursework file below.
 
-[Essay on Health and Development](Globaldevelopmentpolitics_Coursework.pdf)
+[Essay on Health and Development](/assets/pdf/Globaldevelopmentpolitics_Coursework.pdf)
