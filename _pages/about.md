@@ -11,10 +11,12 @@ profile:
   more_info: >
     <p>Taikang East Road 199</p>
     <p>Ningbo, Zhejiang, China</p>
-
-news: true # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+  style: >
+    img {
+      width: 150px;
+      height: auto;
+    }
+    
 ---
 
 I am a 4th-year undergrad from the [School of International Studies](https://www.nottingham.edu.cn/en/humanities-and-social-sciences/schools-and-department/international-studies/home.aspx), [University of Nottingham Ningbo China](https://www.nottingham.edu.cn/en/index.aspx). My research interests include organized crime, deepfake technology in organized crime, human and drug trafficking, substance dependence, corruption, Chinese criminology and queer criminology.
