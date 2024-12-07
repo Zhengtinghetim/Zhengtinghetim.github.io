@@ -5,7 +5,7 @@ description: coursework for INTS3017 People and Borders
 img: assets/img/12.jpg
 importance: 1
 category: history
-related_publications: true
+related_publications: false
 ---
 
 You can access the coursework file below.
