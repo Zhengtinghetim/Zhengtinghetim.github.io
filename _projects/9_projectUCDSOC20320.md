@@ -10,4 +10,4 @@ category: criminology
 
 You can access the coursework file below.
 
-[Report on Vietnamese Refugees](https://Zhengtinghetim.github.io/assets/pdf/UCD_IrishYouthCriminology_A+.pdf)
+[Research proposal on Irish LGBTQ Youth’s school-based victimisation experience](https://Zhengtinghetim.github.io/assets/pdf/UCD_IrishYouthCriminology_A+.pdf)
