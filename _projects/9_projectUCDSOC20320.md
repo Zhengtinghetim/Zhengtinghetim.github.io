@@ -10,4 +10,4 @@ category: criminology
 
 You can access the coursework file below.
 
-[Research proposal on Irish LGBTQ Youth’s school-based victimisation experience](https://Zhengtinghetim.github.io/assets/pdf/AU_Coursework.pdf)
+[Research proposal on Irish LGBTQ Youth’s school-based victimisation experience](https://Zhengtinghetim.github.io/assets/pdf/UCD_IrishYouthCriminology_A+.pdf)
