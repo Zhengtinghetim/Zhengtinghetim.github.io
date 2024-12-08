@@ -9,8 +9,6 @@ profile:
   image: profilephoto.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>Taikang East Road 199</p>
-    <p>Ningbo, Zhejiang, China</p>
   style: >
     img {
       width: 150px;
