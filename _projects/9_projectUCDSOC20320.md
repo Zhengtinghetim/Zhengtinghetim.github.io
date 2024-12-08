@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Research proposal on Queer criminology
+title: Research Proposal on Queer Criminology
 description: Coursework for SOC20320 Qualitative Research Methods
 img: assets/img/6.jpg
 importance: 4
