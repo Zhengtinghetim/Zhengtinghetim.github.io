@@ -24,48 +24,71 @@
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "url": "https://example.com",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity"]
+      "name": "School of International Communication, UNNC",
+      "position": "Research Assistant to Dr. Stephen Goulding",
+      "url": "https://research.nottingham.edu.cn/en/persons/stephen-goulding",
+      "startDate": "2024-10-08",
+      "endDate": "2024-12-08",
+      "summary": "Assisted Dr. Stephen Goudling in primary research on the discursive construction of female actors in China. Conducted a pilot study, extracted, translated and processed data, coded data and analysed data with NVivo, ensuring the research project proceeds to the next stage",
+      "highlights": ["NVivo", "Critical Discourse Analysis", "Qualitative Research"]
     }
   ],
   "volunteer": [
     {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "url": "https://example.com",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
+      "organization": "Nottingham Confucious Institute China Ningbo Branch",
+      "location": "Ningbo, China",
+      "position": "Chinese Language Partner",
+      "url": "https://www.nottingham.edu.cn/en/confucius-institute/home.aspx",
+      "startDate": "2023-03-03",
+      "endDate": "2023-05-03",
+      "summary": "Chinese Language Partner for International Students at UNNC to learn Chinese.",
+      Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
+      "highlights": ["Oragnised 8 weekly meetings with my International student across the spring term."]
     }
   ],
   "education": [
     {
-      "institution": "University of Zurich, Zurich, Switzerland",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Software Development",
-      "studyType": "PhD",
-      "startDate": "1905-01-01",
-      "endDate": "1905-01-01",
+      "institution": "University of Nottingham Ningbo, China",
+      "location": "Ningbo, China",
+      "url": "https://www.nottingham.edu.cn/en/index.aspx",
+      "area": "International Studies",
+      "studyType": "BA",
+      "startDate": "2021-09-01",
+      "endDate": "2025-07-01",
       "score": "10",
-      "courses": ["Theory of Relativity"]
+      "courses": ["Global Development Politics", "Public Policy: Theory and Practices", "Diplomacy"]
+    }  
+    {
+      "institution": "Aarhus University",
+      "location": "Aarhus, Denmark",
+      "url": "https://international.au.dk/",
+      "area": "Social sciences, drug research",
+      "studyType": "Summer School",
+      "startDate": "2021-07-01",
+      "endDate": "2025-07-26",
+      "score": "9",
+      "courses": ["Youth, Drugs and Alcohol - Social Science Approaches"]
+    }  
+    {
+      "institution": "University College Dublin",
+      "location": "Dublin, Ireland",
+      "url": "https://www.ucd.ie/",
+      "area": "Social Science",
+      "studyType": "BA (Exchange)",
+      "startDate": "2023-09-01",
+      "endDate": "2024-06-01",
+      "score": "8",
+      "courses": ["Criminological Theory","Sociology of War and Violence","Qualitative Research Methods","Research Methods in Political Science","Foundations in Political Research"]
     }
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
-    }
+      "title": "Ningbo Government Global Mobility Scholarship",
+      "date": "2024-11-18",
+      "awarder": "UNNC",
+      "url": "https://www.nottingham.edu.cn/en/global/documents/outbound/exchange-out-scholarship-2425.pdf",
+      "summary": "The Ningbo Government Global Mobility Scholarship is a highly selective merit-based scholarship."
+    }    
   ],
   "certificates": [
     {
