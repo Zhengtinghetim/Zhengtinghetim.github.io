@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+{% assign resume_data = 'assets/json/resume.json' | absolute_url | split: '\n' | join: '' | parse_json %}
+
 {% unless site.data.resume %}
   <div class="post">
     <header class="post-header">
