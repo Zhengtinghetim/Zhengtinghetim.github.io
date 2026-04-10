@@ -873,10 +873,16 @@ footer:hover .season-picker{opacity:1;pointer-events:auto}
       summerBgContainer.remove();
     }
     
-    /* Set new season and update label */
+    /* Set new season and update labels */
     season = newSeason;
     var labels = { spring:'Spring', summer:'Summer', autumn:'Autumn', winter:'Winter' };
-    var ft = document.getElementById('ft-season');
+    var emojis = { spring:'&#x1F338;', summer:'&#x1F33C;', autumn:'&#x1F342;', winter:'&#x2744;&#xFE0F;' };
+    
+    /* Update hero section badge */
+    var badge = document.getElementById('sn-badge');
+    if (badge) badge.innerHTML = emojis[newSeason] + '&ensp;' + labels[newSeason];
+    
+    /* Update footer label */
     if (ft) ft.textContent = labels[newSeason] + ' edition';
     
     /* Update button states */
