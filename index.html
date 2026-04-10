@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<!-- 
+  PERSONAL PORTFOLIO WEBSITE FOR ZHENGTING TIM HE
+  
+  This is a single-page, minimalist portfolio website.
+  Built with: HTML5, CSS3 (with CSS variables), JavaScript (vanilla)
+  Hosted on: GitHub Pages
+  
+  STRUCTURE:
+  - Navigation: Fixed header with links to all sections
+  - Hero: Welcome section with name, title, and CTA buttons
+  - About: Brief bio and key information
+  - Timeline: Journey through education and work experience
+  - Projects: Selected academic and professional projects
+  - Skills: Research methods, interests, and technical skills
+  - Contact: CTA section with email and social links
+  - Footer: Season picker for background design themes
+  - JavaScript: Season-based decorative flowers and interactivity
+  
+  RESPONSIVE: Mobile-friendly with breakpoint at 700px
+  BROWSER SUPPORT: Modern browsers (Chrome, Firefox, Safari, Edge)
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhengting Tim &#20309;&#25391;&#38728; HE</title>
+<!-- Google Fonts: DM Serif Display (headers) + DM Sans (body)-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ── CSS VARIABLES & GLOBAL DEFAULTS ── */
+:root{
+  /* COLORS: Grayscale palette for clean, professional design */
+  --white:#ffffff;              /* Primary background */
+  --black:#0a0a0a;              /* Primary text color */
+  --g1:#f5f5f7;                 /* Light gray - used for light backgrounds & hover states */
+  --g2:#e8e8ed;                 /* Medium gray - borders & dividers */
+  --g4:#86868b;                 /* Dark gray - secondary text & labels */
+  --g6:#515154;                 /* Darker gray - body text */
+  
+  /* TYPOGRAPHY: Font families with fallbacks */
+  --fd:'DM Serif Display',Georgia,serif;    /* Display font for headings */
+  --fb:'DM Sans',-apple-system,sans-serif;  /* Body font for readability */
+  
+  /* LAYOUT: Max-width to keep content readable */
+  --mw:860px;                   /* Max width of main content */
+  --gap:96px;                   /* Vertical spacing between sections */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--white);color:var(--black);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ── flowers: fixed, never scroll, only breathe ── */
+.fl{
+  position:fixed;
+  pointer-events:none;
+  z-index:9999;
+  animation:none;
+  will-change:opacity;
+}
+@keyframes twinkle{
+  0%       {opacity:var(--lo,.05)}
+  12%      {opacity:var(--hi,.20)}
+  20%      {opacity:var(--lo,.05)}
+  50%      {opacity:var(--hi,.22)}
+  58%      {opacity:var(--lo,.05)}
+  100%     {opacity:var(--lo,.05)}
+}
+@media(prefers-reduced-motion:reduce){
+  .fl{animation:none!important;opacity:.12!important}
+}
+
+/* ── nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:.5px solid var(--g2);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-n{font-family:var(--fd);font-size:16px;letter-spacing:.02em;color:var(--black);text-decoration:none}
+.nav-l{display:flex;gap:32px;list-style:none}
+.nav-l a{font-size:13px;color:var(--g6);text-decoration:none;transition:color .2s}
+.nav-l a:hover{color:var(--black)}
+
+/* ── layout ── */
+main{position:relative;z-index:2;max-width:var(--mw);margin:0 auto;padding:0 40px}
+section{padding:var(--gap) 0;border-bottom:.5px solid var(--g2)}
+section:last-child{border-bottom:none}
+.lbl{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--g4);margin-bottom:40px}
+
+/* ── hero ── */
+#hero{padding-top:160px;padding-bottom:var(--gap);min-height:80vh;display:flex;flex-direction:column;justify-content:center}
+.eye{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--g4);margin-bottom:24px}
+.hname{font-family:var(--fd);font-size:clamp(52px,8vw,88px);line-height:1.05;letter-spacing:-.02em;margin-bottom:8px}
+.hcn{font-family:var(--fd);font-size:clamp(22px,3vw,34px);font-style:italic;color:var(--g4);letter-spacing:.08em;margin-bottom:40px;display:block}
+.htag{font-size:clamp(16px,2vw,20px);font-weight:300;color:var(--g6);max-width:560px;line-height:1.65;margin-bottom:48px}
+.hl{display:flex;gap:14px;flex-wrap:wrap}
+.sbadge{font-size:12px;color:var(--g4);letter-spacing:.04em;margin-bottom:12px;display:block}
+
+/* ── buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:980px;font-size:14px;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:var(--fb)}
+.bp{background:var(--black);color:var(--white)}.bp:hover{background:#333;transform:translateY(-1px)}
+.bs{background:var(--g1);color:var(--black)}.bs:hover{background:var(--g2);transform:translateY(-1px)}
+
+/* ── about ── */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.atxt p{color:var(--g6);margin-bottom:16px;font-size:16px;line-height:1.75}
+.mr{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:.5px solid var(--g2)}
+.mr:last-child{border-bottom:none}
+.ml{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--g4);font-weight:500}
+.mv{font-size:14px;color:var(--black);text-align:right;max-width:240px}
+
+/* ── education & experience layout ── */
+.edu-item{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:32px 0;border-bottom:.5px solid var(--g2)}
+.edu-item:last-child{border-bottom:none}
+.edu-year{font-size:13px;color:var(--g4);padding-top:4px;font-variant-numeric:tabular-nums}
+.edu-degree{font-family:var(--fd);font-size:22px;line-height:1.2;color:var(--black);margin-bottom:6px;letter-spacing:-.01em}
+.edu-school{font-size:15px;color:var(--g6);margin-bottom:4px}
+.edu-detail{font-size:13px;color:var(--g4)}
+.exp-item{display:grid;grid-template-columns:100px 1fr;gap:32px;padding:32px 0;border-bottom:.5px solid var(--g2)}
+.exp-item:last-child{border-bottom:none}
+.exp-year{font-size:13px;color:var(--g4);padding-top:4px}
+.exp-title{font-family:var(--fd);font-size:20px;line-height:1.2;margin-bottom:4px;letter-spacing:-.01em}
+.exp-org{font-size:14px;color:var(--g4);margin-bottom:12px}
+.exp-desc{font-size:14px;color:var(--g6);line-height:1.7}
+
+/* ── projects ── */
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--g2);border:.5px solid var(--g2)}
+.pc{background:var(--white);padding:32px;transition:background .2s;text-decoration:none;display:block;color:inherit}
+.pc:hover{background:var(--g1)}
+.pt{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g4);margin-bottom:12px}
+.pn{font-family:var(--fd);font-size:19px;line-height:1.3;color:var(--black);margin-bottom:10px}
+.pd{font-size:13px;color:var(--g6);line-height:1.6}
+.pa{margin-top:20px;font-size:18px;color:var(--g4);transition:transform .2s,color .2s;display:inline-block}
+.pc:hover .pa{transform:translate(3px,-3px);color:var(--black)}
+
+/* ── skills ── */
+.sg{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.st{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--g4);margin-bottom:16px}
+.stags{display:flex;flex-wrap:wrap;gap:8px}
+.stag{font-size:13px;color:var(--black);background:var(--g1);padding:5px 12px;border-radius:980px;border:.5px solid var(--g2)}
+
+/* ── contact ── */
+.cw{text-align:center;padding:80px 0}
+.ch{font-family:var(--fd);font-size:clamp(36px,5vw,60px);line-height:1.1;letter-spacing:-.02em;margin-bottom:24px}
+.cs{font-size:16px;color:var(--g6);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto}
+.cl{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+footer{border-top:.5px solid var(--g2);padding:32px 40px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--g4);position:relative}
+.season-picker{position:absolute;bottom:100%;left:40px;background:var(--white);border:.5px solid var(--g2);border-radius:8px;padding:12px;display:flex;gap:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:100}
+footer:hover .season-picker{opacity:1;pointer-events:auto}
+.season-btn{padding:6px 12px;border:.5px solid var(--g2);border-radius:980px;background:var(--g1);font-size:11px;cursor:pointer;transition:all .2s}
+.season-btn.active{background:var(--black);color:var(--white)}
+
+@media(max-width:700px){
+  nav{padding:0 20px}.nav-l{display:none}
+  main{padding:0 24px}
+  .agrid{grid-template-columns:1fr;gap:40px}
+  .edu-item,.exp-item{grid-template-columns:1fr;gap:4px}
+  .pg{grid-template-columns:1fr}
+  .sg{grid-template-columns:1fr 1fr;gap:28px}
+  footer{flex-direction:column;gap:8px;text-align:center;padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     NAVIGATION BAR
+     - Fixed at top
+     - Semi-transparent with blur effect
+     - Contains logo/name and navigation links
+     ═══════════════════════════════════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="nav-n">Zhengting Tim HE</a>
+  <ul class="nav-l">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <!-- ═════════════════════════════════════════════════════════════
+       HERO SECTION (#hero)
+       - Welcome/landing section
+       - Large name, tagline, and call-to-action buttons
+       - Uses semantic HTML and descriptive text
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="hero">
+    <span class="sbadge" id="sn-badge"></span>  <!-- Season emoji badge (generated by JS) -->
+    <p class="eye">Criminologist &amp; Researcher</p>
+    <h1 class="hname">Zhengting Tim HE</h1>
+    <span class="hcn">&#20309;&#25919;&#38662;</span>  <!-- Chinese name -->
+    <p class="htag">MPhil Criminology student at the University of Cambridge, researching organised crime patterns and tomb robbing in China. First-class graduate from UNNC.</p>
+    <div class="hl">
+      <a href="https://zhengtinghetim.github.io/assets/pdf/Zhengting_CV.pdf" class="btn bp" target="_blank">Download CV &#8594;</a>
+      <a href="mailto:Hezhengting2003@outlook.com" class="btn bs">Get in touch</a>
+      <a href="https://www.linkedin.com/in/zhengting-he-venividivici/" class="btn bs" target="_blank">LinkedIn &#8599;</a>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       ABOUT SECTION (#about)
+       - Brief biography
+       - Two-column layout: text on left, key info on right
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="about">
+    <p class="lbl">About</p>
+    <div class="agrid">
+      <div class="atxt">
+        <p>I am a MPhil Criminology student at the University of Cambridge, investigating organisational patterns of tomb robbing in China under the supervision of Professor Justice Tankebe. I hold a First-class BA (Hons) in International Studies from UNNC.</p>
+        <p>My research interests lie at the intersection of organised crime, transnational criminal networks, and criminal enterprise. My BA dissertation examined methamphetamine trafficking patterns in China using 300+ court documents and quantitative textual analysis.</p>
+        <p>I have contributed to the UNODC's SHERLOC case law database, served as a Research Assistant at Tsinghua University's Center for Global Studies, and was awarded Best Presentation at a conference. I am particularly interested in diverse themes within organized crime and the application of innovative methodologies to these issues.</p>
+      </div>
+      <div>
+        <!-- Key facts listed vertically -->
+        <div class="mr"><span class="ml">Location</span><span class="mv">Cambridge, UK</span></div>
+        <div class="mr"><span class="ml">Institution</span><span class="mv">University of Cambridge</span></div>
+        <div class="mr"><span class="ml">Research Areas</span><span class="mv">Organised Crime, Transnational Networks, Economic Crime</span></div>
+        <div class="mr"><span class="ml">Supervisor</span><span class="mv"><a href="https://www.crim.cam.ac.uk/People/dr-justice-tankebe" style="color:var(--black)">Professor Justice Tankebe</a></span></div>
+        <div class="mr"><span class="ml">Email</span><span class="mv"><a href="mailto:hezhengting2003@outlook.com" style="color:var(--black)">hezhengting2003@outlook.com</a></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       EDUCATION SECTION (#education)
+       - Chronological list of degrees and coursework
+       - 2-column layout: year on left, details on right
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="education">
+    <p class="lbl">Education</p>
+
+    <div class="edu-item">
+      <span class="edu-year">2025–2026</span>
+      <div>
+        <h3 class="edu-degree">MPhil in Criminology</h3>
+        <p class="edu-school">University of Cambridge 🇬🇧</p>
+        <p class="edu-detail">Thesis: "Let's drive and dig: Investigating the organisational patterns of tomb robbing in China." Supervisor: Professor Justice Tankebe.</p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <span class="edu-year">2021–2025</span>
+      <div>
+        <h3 class="edu-degree">BA (Hons) International Studies</h3>
+        <p class="edu-school">University of Nottingham Ningbo China</p>
+        <p class="edu-detail">First class (GPA: 3.82/4.00). Dissertation on cross-border methamphetamine trafficking patterns in China. Awarded Zhejiang Provincial Excellent Graduate 2025.</p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <span class="edu-year">July 2024</span>
+      <div>
+        <h3 class="edu-degree">Summer School</h3>
+        <p class="edu-school">Aarhus University, Denmark 🇩🇰 (full tuition waiver €1450)</p>
+        <p class="edu-detail">Youth, Drugs and Alcohol - Social Science Approaches. Advanced coursework in criminological theory and drug policy.</p>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <span class="edu-year">Sept 2023–May 2024</span>
+      <div>
+        <h3 class="edu-degree">Exchange</h3>
+        <p class="edu-school">University College Dublin, Ireland 🇮🇪</p>
+        <p class="edu-detail">Pursued qualitative research methods, policing studies, and queer criminology. Independent research on emotional labour in policing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       EXPERIENCE SECTION (#experience)
+       - Chronological list of work and research roles (most recent first)
+       - 2-column layout: year on left, details on right
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="experience">
+    <p class="lbl">Experience</p>
+
+    <div class="exp-item">
+      <span class="exp-year">Oct–Dec 2024</span>
+      <div>
+        <h3 class="exp-title">Research Assistant</h3>
+        <p class="exp-org">University of Nottingham Ningbo China</p>
+        <p class="exp-desc">Research Assistant to Dr. Stephen Goulding. Collected, organized, and processed data with NVivo coding of textual data.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">June 2024</span>
+      <div>
+        <h3 class="exp-title">Student Fellow</h3>
+        <p class="exp-org">UNODC, Vienna 🇦🇹</p>
+        <p class="exp-desc">Onsite training at United Nations Office on Drugs and Crime focused on transnational organized crime. Drafted case file for UNODC SHERLOC Case Law Database.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">Sept 2023–June 2024</span>
+      <div>
+        <h3 class="exp-title">Partner</h3>
+        <p class="exp-org">Ningbo Xiaocheng Information Technology Co., Ltd</p>
+        <p class="exp-desc">Promoted to partner with company shares. Supervise and monitor department work status while pursuing undergraduate studies.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">May–Nov 2023</span>
+      <div>
+        <h3 class="exp-title">Undergraduate Research Assistant</h3>
+        <p class="exp-org">Tsinghua University Center for Global Studies, Beijing</p>
+        <p class="exp-desc">Translation, publications, expertise in Foreign Policy & China-US relations.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">Aug 2022–Aug 2023</span>
+      <div>
+        <h3 class="exp-title">Creative Manager</h3>
+        <p class="exp-org">Ningbo Xiaocheng Information Technology Co., Ltd</p>
+        <p class="exp-desc">Managed company image across social media. Partner communication and advertising.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">May–Nov 2022</span>
+      <div>
+        <h3 class="exp-title">International Project Department Intern</h3>
+        <p class="exp-org">Intellisia Institute, Shenzhen</p>
+        <p class="exp-desc">Desk research, commercial due diligence, meeting minutes. Outstanding Intern.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-year">March–Aug 2022</span>
+      <div>
+        <h3 class="exp-title">Creative Intern</h3>
+        <p class="exp-org">Ningbo Xiaocheng Information Technology Co., Ltd</p>
+        <p class="exp-desc">Began role in creative services and social media management.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       SKILLS SECTION (#skills)
+       - 3-column grid: Research Methods, Interests, Technical Skills
+       - Each skill displayed as a tag/badge
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="skills">
+    <p class="lbl">Skills &amp; Methods</p>
+    <div class="sg">
+      <div>
+        <p class="st">Research Methods</p>
+        <div class="stags">
+          <span class="stag">Quantitative Analysis</span><span class="stag">Qualitative Research</span>
+          <span class="stag">Network Analysis</span><span class="stag">Textual Analysis</span>
+          <span class="stag">Discourse Analysis</span><span class="stag">GIS Mapping</span>
+        </div>
+      </div>
+      <div>
+        <p class="st">Research Interests</p>
+        <div class="stags">
+          <span class="stag">Organised Crime</span><span class="stag">Transnational Networks</span>
+          <span class="stag">Economic Crime</span><span class="stag">Drug Trafficking</span>
+          <span class="stag">Institutional Analysis</span><span class="stag">Chinese Criminology</span>
+        </div>
+      </div>
+      <div>
+        <p class="st">Technical Skills</p>
+        <div class="stags">
+          <span class="stag">R</span><span class="stag">Python</span>
+          <span class="stag">NVivo</span><span class="stag">STATA</span>
+          <span class="stag">SQL</span><span class="stag">Microsoft Office</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       PROJECTS SECTION (#projects)
+       - 2-column grid of project cards (1 column on mobile)
+       - Each card links to full project details
+       - Hover effects for interactivity
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="projects">
+    <p class="lbl">Selected Projects</p>
+    <div class="pg">
+      <!-- Each project card: category, title, description, external link -->
+      <a href="https://zhengtinghetim.github.io/projects/1_projectpeopleandborders/" class="pc" target="_blank">
+        <p class="pt">History</p><h3 class="pn">Vietnamese Refugees, 1975&#8211;1985</h3>
+        <p class="pd">Historical report on refugee flows, international response, and border politics in Southeast Asia. INTS3017 People and Borders.</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://zhengtinghetim.github.io/projects/2_projectAU/" class="pc" target="_blank">
+        <p class="pt">Criminology</p><h3 class="pn">Cannabis Market in the UK</h3>
+        <p class="pd">Essay analysing the structure and regulation of the UK cannabis market, produced at Aarhus University summer school.</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://zhengtinghetim.github.io/projects/10_projectUCDSOC20320policing/" class="pc" target="_blank">
+        <p class="pt">Criminology &middot; Qualitative Research</p><h3 class="pn">Policing &amp; Emotional Labour</h3>
+        <p class="pd">Qualitative research on how emotional labour shapes policing culture and practice. SOC20320, UCD.</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://zhengtinghetim.github.io/projects/9_projectUCDSOC20320/" class="pc" target="_blank">
+        <p class="pt">Queer Criminology</p><h3 class="pn">Research Proposal: Queer Criminology</h3>
+        <p class="pd">Exploring how queer theory can expand criminological frameworks to address LGBTQ+ experiences of crime and justice.</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://zhengtinghetim.github.io/projects/7_projectglobaldevelopmentpolitics/" class="pc" target="_blank">
+        <p class="pt">Politics</p><h3 class="pn">Health &amp; Development</h3>
+        <p class="pd">Essay on health outcomes and global developmental politics, examining policy mechanisms and international governance. INTS3028.</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <!-- Placeholder for ongoing work -->
+      <div class="pc" style="display:flex;align-items:center;justify-content:center;background:var(--g1);cursor:default">
+        <div style="text-align:center">
+          <p style="font-family:'DM Serif Display',serif;font-size:17px;color:var(--g4);font-style:italic">Dissertation in progress</p>
+          <p style="font-size:12px;color:var(--g4);margin-top:8px;letter-spacing:.04em">Cultural Crime Networks in China</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       PRESS SECTION (#press)
+       - Featured press coverage and media mentions
+       - External links to publications and features
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="press">
+    <p class="lbl">Press &amp; Media</p>
+    <div class="pg">
+      <a href="https://mp.weixin.qq.com/s/IE9py89Baody6bl7lwsohw" class="pc" target="_blank">
+        <p class="pt">2026-03-01</p><h3 class="pn">Shenzhen Experimental School</h3>
+        <p class="pd">A post from my high school</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/kZ_G_7vzEt_XsFIbN5dwBA" class="pc" target="_blank">
+        <p class="pt">2025-10-17</p><h3 class="pn">University of Nottingham Ningbo China</h3>
+        <p class="pd">Post on an event experience of mine</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://www.peopleapp.com/column/30049665196-500006376119" class="pc" target="_blank">
+        <p class="pt">2025-07-14</p><h3 class="pn">People's Daily</h3>
+        <p class="pd">News on one event I attended</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/X9pDd6MAUOqQsU_fw3_zHw" class="pc" target="_blank">
+        <p class="pt">2025-06-02</p><h3 class="pn">University of Nottingham Ningbo China</h3>
+        <p class="pd">Personal story</p>
+        <span class="pa">&#8599;</span>
+      </a>
+      <a href="https://mp.weixin.qq.com/s/xQhzh3JyxVWlzM3E2OjNCA" class="pc" target="_blank">
+        <p class="pt">2023-03-16</p><h3 class="pn">Intellisia Institute</h3>
+        <p class="pd">Post on me rewarded outstanding intern</p>
+        <span class="pa">&#8599;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       CONTACT SECTION (#contact)
+       - Call-to-action for connection
+       - Links to email, LinkedIn, and CV
+       ═════════════════════════════════════════════════════════════ -->
+  <section id="contact" style="border-bottom:none">
+    <div class="cw">
+      <h2 class="ch">Let&#8217;s connect.</h2>
+      <p class="cs">Whether you&#8217;re a researcher, collaborator, or simply curious &#8212; I&#8217;d love to hear from you.</p>
+      <div class="cl">
+        <a href="mailto:hezhengting2003@outlook.com" class="btn bp">Email me &#8594;</a>
+        <a href="https://www.linkedin.com/in/zhengting-he-venividivici/" class="btn bs" target="_blank">LinkedIn &#8599;</a>
+        <a href="https://zhengtinghetim.github.io/assets/pdf/Zhengting_CV.pdf" class="btn bs" target="_blank">Download CV &#8599;</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     FOOTER
+     - Copyright info
+     - Season display
+     - Season picker (hover to reveal): Switch between Spring, Summer, 
+       Autumn, Winter backgrounds with different decorative elements
+     ═══════════════════════════════════════════════════════════════════ -->
+<footer>
+  <span>&#169; 2025 Zhengting Tim &#20309;&#25919;&#38662; HE</span>
+  <span id="ft-season"></span>  <!-- Season label (generated by JS) -->
+  <div class="season-picker">
+    <!-- Buttons generate seasonal decorative backgrounds -->
+    <button class="season-btn active" data-season="spring">Spring 🌸</button>
+    <button class="season-btn" data-season="summer">Summer 🌼</button>
+    <button class="season-btn" data-season="autumn">Autumn 🍂</button>
+    <button class="season-btn" data-season="winter">Winter ❄️</button>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT: INTERACTIVE ELEMENTS & DECORATIONS
+     
+     MAIN FUNCTIONS:
+     1. Season Detection: Auto-detect current season or use user selection
+     2. Seasonal Decorations: Generate SVG flowers/snowflakes as fixed 
+        background elements
+     3. Twinkling Animation: Smooth sine-wave based opacity transitions
+     ═══════════════════════════════════════════════════════════════════ -->
+<script>
+(function(){
+  /* ── 1. Season Detection: Get current month and map to season ── */
+  var m = new Date().getMonth();
+  var season, label, emoji;
+  if      (m>=2 && m<=4)  { season='spring'; label='Spring'; emoji='&#x1F338;'; }
+  else if (m>=5 && m<=7)  { season='summer'; label='Summer'; emoji='&#x1F33C;'; }
+  else if (m>=8 && m<=10) { season='autumn'; label='Autumn'; emoji='&#x1F342;'; }
+  else                    { season='winter'; label='Winter'; emoji='&#x2744;&#xFE0F;'; }
+
+  var badge = document.getElementById('sn-badge');
+  var ft    = document.getElementById('ft-season');
+  if (badge) badge.innerHTML = emoji + '&ensp;' + label;
+  if (ft)    ft.textContent  = label + ' edition';
+
+  /* ── 2. Shape builders  (all drawn centred at 0,0) ──────────────
+
+     SPRING — realistic sakura petal:
+       Each individual petal uses cubic bezier curves to get the
+       characteristic oval-with-notched-tip shape of a cherry blossom.
+       The notch is drawn as two inward curves meeting at the tip.
+       Five petals are rotated around the centre; stamens added on top.
+
+     SUMMER — rounded gardenia / camellia petal cluster
+     AUTUMN — detailed maple leaf with 7 lobes + stem
+     WINTER — 6-spoke snowflake with two tiers of side branches
+  ──────────────────────────────────────────────────────────────── */
+
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* One sakura petal pointing upward from origin.
+     base ≈ (0, 11), tip ≈ (0, -14), notch dips in at very tip.   */
+  function sakuraPetal(fill, vein) {
+    return (
+      /* body: left side, notch, right side, back to base */
+      '<path d="M 0,11'
+      +' C -5,9 -9,3 -8.5,-4'      /* left lower */
+      +' C -8,-10 -4,-13 -1.8,-12'  /* left upper → near tip */
+      +' C -0.8,-13.5 0,-14 0,-12.5'/* left half of notch */
+      +' C 0,-14 0.8,-13.5 1.8,-12' /* right half of notch */
+      +' C 4,-13 8,-10 8.5,-4'      /* right upper */
+      +' C 9,3 5,9 0,11'            /* right lower */
+      +' Z" fill="'+fill+'"'
+      +' stroke="'+vein+'" stroke-width="0.3" stroke-opacity="0.25"/>'
+      /* central vein */
+      +'<line x1="0" y1="10" x2="0" y2="-12"'
+      +' stroke="'+vein+'" stroke-width="0.6"'
+      +' stroke-linecap="round" opacity="0.4"/>'
+      /* two branching side veins */
+      +'<path d="M 0,3 Q -4,0 -6.5,-5"'
+      +' fill="none" stroke="'+vein+'" stroke-width="0.35"'
+      +' stroke-linecap="round" opacity="0.3"/>'
+      +'<path d="M 0,3 Q 4,0 6.5,-5"'
+      +' fill="none" stroke="'+vein+'" stroke-width="0.35"'
+      +' stroke-linecap="round" opacity="0.3"/>'
+    );
+  }
+
+  function spring() {
+    /* Spring background: Multiple cherry blossom tree groups with gentle sway animation */
+    
+    /* Add CSS animations for natural swaying */
+    if (!document.getElementById('spring-sway-styles')) {
+      const styles = document.createElement('style');
+      styles.id = 'spring-sway-styles';
+      styles.textContent = `
+        @keyframes sway1 {
+          0%, 100% { transform: translateY(-50%) rotate(-5deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(-5deg) translateX(8px); }
+        }
+        @keyframes sway2 {
+          0%, 100% { transform: translateY(-50%) rotate(3deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(3deg) translateX(-6px); }
+        }
+        @keyframes sway3 {
+          0%, 100% { transform: translateY(-50%) rotate(-8deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(-8deg) translateX(7px); }
+        }
+        @keyframes sway4 {
+          0%, 100% { transform: translateY(-50%) rotate(4deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(4deg) translateX(-5px); }
+        }
+        @keyframes sway5 {
+          0%, 100% { transform: translateY(-50%) rotate(-6deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(-6deg) translateX(9px); }
+        }
+        @keyframes sway6 {
+          0%, 100% { transform: translateY(-50%) rotate(5deg) translateX(0px); }
+          50% { transform: translateY(-50%) rotate(5deg) translateX(-8px); }
+        }
+        .spring-bg-left-0 { animation: sway1 6s ease-in-out infinite; }
+        .spring-bg-left-1 { animation: sway2 8s ease-in-out infinite; }
+        .spring-bg-left-2 { animation: sway3 7s ease-in-out infinite; }
+        .spring-bg-right-0 { animation: sway4 7.5s ease-in-out infinite; }
+        .spring-bg-right-1 { animation: sway5 6.5s ease-in-out infinite; }
+        .spring-bg-right-2 { animation: sway6 8.5s ease-in-out infinite; }
+      `;
+      document.head.appendChild(styles);
+    }
+    
+    /* Create container for spring background images */
+    const springBgContainer = document.getElementById('spring-bg-container') || document.createElement('div');
+    springBgContainer.id = 'spring-bg-container';
+    
+    let html = '';
+    
+    /* Left side: 3 tree groups with spring1.jpg */
+    const leftPositions = [
+      { top: '15%', size: '380px', opacity: 0.25 },
+      { top: '50%', size: '420px', opacity: 0.3 },
+      { top: '75%', size: '350px', opacity: 0.22 }
+    ];
+    
+    leftPositions.forEach((pos, idx) => {
+      html += `<img src="assets/img/spring1.jpg" alt="" class="spring-bg spring-bg-left spring-bg-left-${idx}" style="
+        position: fixed;
+        left: -70px;
+        top: ${pos.top};
+        width: ${pos.size};
+        height: auto;
+        opacity: ${pos.opacity};
+        pointer-events: none;
+        z-index: 1;
+        object-fit: contain;
+      ">`;
+    });
+    
+    /* Right side: 3 tree groups with spring2.jpg */
+    const rightPositions = [
+      { top: '20%', size: '400px', opacity: 0.26 },
+      { top: '55%', size: '380px', opacity: 0.3 },
+      { top: '80%', size: '360px', opacity: 0.23 }
+    ];
+    
+    rightPositions.forEach((pos, idx) => {
+      html += `<img src="assets/img/spring2.jpg" alt="" class="spring-bg spring-bg-right spring-bg-right-${idx}" style="
+        position: fixed;
+        right: -70px;
+        top: ${pos.top};
+        width: ${pos.size};
+        height: auto;
+        opacity: ${pos.opacity};
+        pointer-events: none;
+        z-index: 1;
+        object-fit: contain;
+      ">`;
+    });
+    
+    springBgContainer.innerHTML = html;
+    
+    if (!document.getElementById('spring-bg-container')) {
+      document.body.appendChild(springBgContainer);
+    }
+    return ''; /* Empty - images are handled separately */
+  }
+
+  function summer() {
+    /* Summer background: Single tree on each side with gentle sway */
+    
+    /* Add CSS animations for natural swaying */
+    if (!document.getElementById('summer-sway-styles')) {
+      const styles = document.createElement('style');
+      styles.id = 'summer-sway-styles';
+      styles.textContent = `
+        @keyframes summer-sway-left {
+          0%, 100% { transform: translateY(-50%) translateX(0px); }
+          50% { transform: translateY(-50%) translateX(6px); }
+        }
+        @keyframes summer-sway-right {
+          0%, 100% { transform: translateY(-50%) translateX(0px); }
+          50% { transform: translateY(-50%) translateX(-6px); }
+        }
+        .summer-bg-left { animation: summer-sway-left 7s ease-in-out infinite; }
+        .summer-bg-right { animation: summer-sway-right 7.5s ease-in-out infinite; }
+      `;
+      document.head.appendChild(styles);
+    }
+    
+    /* Create container for summer background images */
+    const summerBgContainer = document.getElementById('summer-bg-container') || document.createElement('div');
+    summerBgContainer.id = 'summer-bg-container';
+    
+    summerBgContainer.innerHTML = `
+      <img src="assets/img/summer1.jpg" alt="" class="summer-bg summer-bg-left" style="
+        position: fixed;
+        left: -70px;
+        top: 50%;
+        width: 400px;
+        height: auto;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
+        object-fit: contain;
+      ">
+      <img src="assets/img/summer2.jpg" alt="" class="summer-bg summer-bg-right" style="
+        position: fixed;
+        right: -70px;
+        top: 50%;
+        width: 400px;
+        height: auto;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 1;
+        object-fit: contain;
+      ">
+    `;
+    
+    if (!document.getElementById('summer-bg-container')) {
+      document.body.appendChild(summerBgContainer);
+    }
+    return ''; /* Empty - images are handled separately */
+  }
+
+  function autumn() {
+    var cs = ['#bf360c','#e64a19','#f4511e','#ff7043','#d84315','#e65100'];
+    var c  = cs[Math.floor(Math.random() * cs.length)];
+    /* 7-lobe maple silhouette + stem */
+    return '<path d="'
+      +'M 0,-15 C 1,-12 3,-11 5.5,-13'   /* top-right lobe */
+      +' C 4.5,-10 7,-8.5 10,-10'         /* right lobe */
+      +' C 8,-7 9,-5 7,-3.5'
+      +' C 10,-2.5 11,0 9,1'
+      +' C 7,0.5 5.5,2 6,4'
+      +' C 4,3 2.5,5 0,5.5'
+      +' C -2.5,5 -4,3 -6,4'
+      +' C -5.5,2 -7,0.5 -9,1'
+      +' C -11,0 -10,-2.5 -7,-3.5'
+      +' C -9,-5 -8,-7 -10,-10'          /* left lobe */
+      +' C -7,-8.5 -4.5,-10 -5.5,-13'    /* top-left lobe */
+      +' C -3,-11 -1,-12 0,-15'          /* back to top */
+      +' Z"'
+      +' fill="'+c+'" opacity="0.9"/>'
+      /* stem */
+      +'<line x1="0" y1="5.5" x2="0" y2="11"'
+      +' stroke="'+c+'" stroke-width="1.4" stroke-linecap="round"/>';
+  }
+
+  function winter() {
+    var html = '';
+    /* Main spokes */
+    for (var i = 0; i < 6; i++) {
+      var a   = (i / 6) * Math.PI * 2;
+      var len = 14;
+      var x2  = (Math.cos(a) * len).toFixed(2);
+      var y2  = (Math.sin(a) * len).toFixed(2);
+      html += '<line x1="0" y1="0" x2="'+x2+'" y2="'+y2+'"'
+            + ' stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>';
+      /* two tiers of branches */
+      [0.35, 0.65].forEach(function(frac) {
+        var bl = 4.5;
+        var bx = (Math.cos(a) * len * frac).toFixed(2);
+        var by = (Math.sin(a) * len * frac).toFixed(2);
+        [a + Math.PI/5, a - Math.PI/5].forEach(function(ba) {
+          var bx2 = (+bx + Math.cos(ba)*bl).toFixed(2);
+          var by2 = (+by + Math.sin(ba)*bl).toFixed(2);
+          html += '<line x1="'+bx+'" y1="'+by+'" x2="'+bx2+'" y2="'+by2+'"'
+                + ' stroke="#4fc3f7" stroke-width="1.0" stroke-linecap="round"/>';
+        });
+      });
+    }
+    /* Hexagonal centre */
+    var pts = [];
+    for (var h = 0; h < 6; h++) {
+      var ha = (h / 6) * Math.PI * 2;
+      pts.push((Math.cos(ha)*3.5).toFixed(1)+','+(Math.sin(ha)*3.5).toFixed(1));
+    }
+    html += '<polygon points="'+pts.join(' ')+'" fill="#b3e5fc" stroke="#4fc3f7" stroke-width="0.8"/>';
+    return html;
+  }
+
+  var makers = { spring:spring, summer:summer, autumn:autumn, winter:winter };
+
+  /* ── 3. Spawn elements — position:fixed, twinkling like stars, everywhere ── */
+  /* Initialize seasonal background images if needed */
+  if (season === 'spring') {
+    spring();
+  } else if (season === 'summer') {
+    summer();
+  }
+  
+  for (var i = 0; i < 24; i++) {
+    /* Distribute across full viewport, but with varying opacity */
+    var left  = (0 + Math.random() * 100).toFixed(1);
+    var top   = (0 + Math.random() * 100).toFixed(1);
+    var rot   = Math.round(Math.random() * 360);
+    var sc    = (0.55 + Math.random() * 0.75).toFixed(2);
+    
+    /* Flowers in middle (30-70% horizontally) are much more transparent */
+    var leftNum = parseFloat(left);
+    var isMiddle = leftNum >= 30 && leftNum <= 70;
+    var opLo  = isMiddle 
+               ? (0.04 + Math.random() * 0.06).toFixed(2)
+               : (0.15 + Math.random() * 0.10).toFixed(2);
+    var opHi  = isMiddle
+               ? 0.35
+               : 0.65;
+    
+    var dur   = (9 + Math.random() * 13).toFixed(1);
+    var dl    = (Math.random() * 22).toFixed(1);
+
+    var div = document.createElement('div');
+    div.className = 'fl';
+    div.style.left = left + '%';
+    div.style.top  = top  + '%';
+    div.style.setProperty('--lo',  opLo);
+    div.style.setProperty('--hi',  opHi);
+    div.style.setProperty('--dur', dur + 's');
+    div.style.setProperty('--dl',  dl  + 's');
+
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width',   '52');
+    svg.setAttribute('height',  '52');
+    svg.setAttribute('viewBox', '-26 -26 52 52');
+    svg.style.cssText = 'overflow:visible;display:block;'
+                      + 'transform:rotate('+rot+'deg) scale('+sc+')';
+    svg.innerHTML = makers[season]();
+
+    div.appendChild(svg);
+    document.body.appendChild(div);
+  }
+
+  /* Initialize flowers on page load */
+  
+  /* ── 4. Continuous sine-wave animation for smooth twinkling ── */
+  setInterval(function() {
+    var flowers = document.querySelectorAll('.fl');
+    var time = Date.now() / 1000; // current time in seconds
+    
+    flowers.forEach(function(flower) {
+      var delayStr = flower.style.getPropertyValue('--dl') || '0s';
+      var durationStr = flower.style.getPropertyValue('--dur') || '14s';
+      
+      var delay = parseFloat(delayStr);
+      var duration = parseFloat(durationStr);
+      
+      var opLo = parseFloat(flower.style.getPropertyValue('--lo')) || 0.1;
+      var opHi = parseFloat(flower.style.getPropertyValue('--hi')) || 0.3;
+      
+      // Calculate phase using sine wave - never stops, always cycles
+      var phase = ((time + delay) / duration) * Math.PI * 2;
+      var sineValue = Math.sin(phase);
+      
+      // Map sine (-1 to 1) to opacity range (opLo to opHi)
+      var opacity = opLo + (opHi - opLo) * (sineValue + 1) / 2;
+      flower.style.opacity = opacity;
+    });
+  }, 30); // Update every 30ms for ultra-smooth animation
+
+  /* ── 5. Season selector buttons ── */
+  var userSeason = null;
+  var seasonBtns = document.querySelectorAll('.season-btn');
+  
+  /* Create pool background for summer */
+  function regenerateFlowers(newSeason) {
+    /* Remove all existing flowers */
+    var existingFlowers = document.querySelectorAll('.fl');
+    existingFlowers.forEach(function(f) { f.remove(); });
+    
+    /* Remove spring background images if switching away from spring */
+    var springBgContainer = document.getElementById('spring-bg-container');
+    if (springBgContainer) {
+      springBgContainer.remove();
+    }
+    
+    /* Remove summer background images if switching away from summer */
+    var summerBgContainer = document.getElementById('summer-bg-container');
+    if (summerBgContainer) {
+      summerBgContainer.remove();
+    }
+    
+    /* Set new season and update label */
+    season = newSeason;
+    var labels = { spring:'Spring', summer:'Summer', autumn:'Autumn', winter:'Winter' };
+    var ft = document.getElementById('ft-season');
+    if (ft) ft.textContent = labels[newSeason] + ' edition';
+    
+    /* Update button states */
+    seasonBtns.forEach(function(btn) {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-season') === newSeason) {
+        btn.classList.add('active');
+      }
+    });
+    
+    /* Handle spring background images */
+    if (newSeason === 'spring') {
+      spring(); /* Initialize spring images */
+    }
+    
+    /* Handle summer background images */
+    if (newSeason === 'summer') {
+      summer(); /* Initialize summer images */
+    }
+    
+    /* Regenerate flowers with new season */
+    for (var i = 0; i < 24; i++) {
+      var left  = (0 + Math.random() * 100).toFixed(1);
+      var top   = (0 + Math.random() * 100).toFixed(1);
+      var rot   = Math.round(Math.random() * 360);
+      var sc    = (0.55 + Math.random() * 0.75).toFixed(2);
+      
+      var leftNum = parseFloat(left);
+      var isMiddle = leftNum >= 30 && leftNum <= 70;
+      var opLo  = isMiddle 
+                 ? (0.04 + Math.random() * 0.06).toFixed(2)
+                 : (0.15 + Math.random() * 0.10).toFixed(2);
+      var opHi  = isMiddle
+                 ? 0.35
+                 : 0.65;
+      
+      var dur   = (9 + Math.random() * 13).toFixed(1);
+      var dl    = (Math.random() * 22).toFixed(1);
+
+      var div = document.createElement('div');
+      div.className = 'fl';
+      div.style.left = left + '%';
+      div.style.top  = top  + '%';
+      div.style.setProperty('--lo',  opLo);
+      div.style.setProperty('--hi',  opHi);
+      div.style.setProperty('--dur', dur + 's');
+      div.style.setProperty('--dl',  dl  + 's');
+
+      var svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('width',   '52');
+      svg.setAttribute('height',  '52');
+      svg.setAttribute('viewBox', '-26 -26 52 52');
+      svg.style.cssText = 'overflow:visible;display:block;'
+                        + 'transform:rotate('+rot+'deg) scale('+sc+')';
+      svg.innerHTML = makers[newSeason]();
+
+      div.appendChild(svg);
+      document.body.appendChild(div);
+    }
+    
+    /* Regenerate flowers with new season - no pool background needed */
+  }
+  
+  /* Add click handlers to season buttons */
+  seasonBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var newSeason = this.getAttribute('data-season');
+      userSeason = newSeason;
+      regenerateFlowers(newSeason);
+    });
+  });
+})();
+</script>
+</body>
+</html>
